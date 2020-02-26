@@ -1,0 +1,23 @@
+/* Custom css modifications */
+
+div.section h2 {
+    text-shadow: none;
+}
+
+div.related ul li.right a {
+    visibility: hidden;
+    border-radius: 3px;
+}
+
+div.section h2 a.headerlink:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+div.section p {
+    text-align: center;
+}
+
+div.section h3 {
+    text-align: center;
+}
