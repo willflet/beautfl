@@ -1,0 +1,7 @@
+londinium package
+=================
+
+.. automodule:: londinium
+   :members:
+   :undoc-members:
+   :show-inheritance:

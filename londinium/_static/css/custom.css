@@ -1,0 +1,35 @@
+div.sphinxsidebar {
+    box-shadow: none;
+}
+
+div.sphinxsidebar .searchformwrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+div.sphinx-toc .spinxlocaltoc h3 a {
+    color: #222831;
+}
+
+form.search input {
+    border-color: #e1e1ea;
+}
+
+button.sidebar-toggle {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+div.section h2 {
+    text-shadow: none;
+}
+
+div.related ul li a {
+    border-radius: 3px;
+}
+
+div.section h2 a.headerlink:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
