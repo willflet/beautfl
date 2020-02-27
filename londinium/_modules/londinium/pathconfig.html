@@ -1,0 +1,361 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>londinium.pathconfig &#8212; London Transport</title>
+    <link rel="stylesheet" href="../../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato|Noto+Serif" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+
+    
+    
+     
+        <script src="../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">London Transport</a>&nbsp;&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a>&nbsp;&nbsp;</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for londinium.pathconfig</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Configuration objects for reading files, with defaults. &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">abstractmethod</span>
+
+
+<span class="k">class</span> <span class="nc">_DataPathConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Base class for storing data paths. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">custom_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_basedir</span> <span class="o">=</span> <span class="n">basedir</span>
+        <span class="k">if</span> <span class="n">custom_paths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_paths</span><span class="p">(</span><span class="o">**</span><span class="n">custom_paths</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_paths</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">basedir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basedir</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Store absolute paths to data specified from basedir and kwargs. &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">abspath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">relative_path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basedir</span><span class="p">,</span> <span class="n">relative_path</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">yaml_filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">yaml_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">custom_paths</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="n">custom_paths</span><span class="o">=</span><span class="n">custom_paths</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">json_filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">custom_paths</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="n">custom_paths</span><span class="o">=</span><span class="n">custom_paths</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RepoDataPathConfig"><a class="viewcode-back" href="../../londinium.pathconfig.html#londinium.pathconfig.RepoDataPathConfig">[docs]</a><span class="k">class</span> <span class="nc">RepoDataPathConfig</span><span class="p">(</span><span class="n">_DataPathConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Config for reading `data supplied in this repository`__.</span>
+
+<span class="sd">    .. _repodata: https://github.com/willflet/tfl-transform/tree/master/londinium/data</span>
+<span class="sd">    __ repodata_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">StationsPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;StationsPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;tfl&#39;</span><span class="p">,</span> <span class="s1">&#39;nr&#39;</span><span class="p">,</span> <span class="s1">&#39;disused&#39;</span><span class="p">,</span> <span class="s1">&#39;depths&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">NRPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;NRPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;z16&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">LinesPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;LinesPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;tfl&#39;</span><span class="p">,</span> <span class="s1">&#39;nr&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">AreasPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;AreasPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;london&#39;</span><span class="p">,</span> <span class="s1">&#39;river&#39;</span><span class="p">,</span> <span class="s1">&#39;zones&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">OSIPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;OSIPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">custom_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Build paths for finding data files.</span>
+
+<span class="sd">        Custom paths for any or all of the files can be defined through a dict</span>
+<span class="sd">        using the keywords of :method:`set_paths` as keys.</span>
+
+<span class="sd">        Otherwise, default structure should be the following::</span>
+
+<span class="sd">            basedir/</span>
+<span class="sd">            ├── dylanmaryk/</span>
+<span class="sd">            │   └── disused-stations.json</span>
+<span class="sd">            ├── oobrien/</span>
+<span class="sd">            │   ├── 2247.json</span>
+<span class="sd">            │   ├── nontfl_zonal_stations.json</span>
+<span class="sd">            │   ├── nr_lines.json</span>
+<span class="sd">            │   ├── nr_stations.json</span>
+<span class="sd">            │   ├── osis.json</span>
+<span class="sd">            │   ├── river_thames_simp.json</span>
+<span class="sd">            │   ├── tfl_lines.json</span>
+<span class="sd">            │   ├── tfl_stations.json</span>
+<span class="sd">            │   └── zones1to6.json</span>
+<span class="sd">            └── TfL/</span>
+<span class="sd">                ├── out-of-station-interchanges.xlsx</span>
+<span class="sd">                └── Station depths.csv</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            basedir:        Base directory where this data is stored. Can be</span>
+<span class="sd">                            ``&quot;&quot;`` if supplying absolute custom_paths.</span>
+<span class="sd">            custom_paths:   Dictionary describing where (in basedir) to find</span>
+<span class="sd">                            each file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="n">custom_paths</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RepoDataPathConfig.set_paths"><a class="viewcode-back" href="../../londinium.pathconfig.html#londinium.pathconfig.RepoDataPathConfig.set_paths">[docs]</a>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">disused_stations</span><span class="o">=</span><span class="s1">&#39;dylanmaryk/disused-stations.json&#39;</span><span class="p">,</span>
+        <span class="n">greater_london</span><span class="o">=</span><span class="s1">&#39;oobrien/2247.json&#39;</span><span class="p">,</span>
+        <span class="n">tfl_stations</span><span class="o">=</span><span class="s1">&#39;oobrien/tfl_stations.json&#39;</span><span class="p">,</span>
+        <span class="n">rail_stations_london</span><span class="o">=</span><span class="s1">&#39;oobrien/nontfl_zonal_stations.json&#39;</span><span class="p">,</span>
+        <span class="n">rail_stations_all</span><span class="o">=</span><span class="s1">&#39;oobrien/nr_stations.json&#39;</span><span class="p">,</span>
+        <span class="n">rail_lines</span><span class="o">=</span><span class="s1">&#39;oobrien/nr_lines.json&#39;</span><span class="p">,</span>
+        <span class="n">out_of_station_interchanges</span><span class="o">=</span><span class="s1">&#39;oobrien/osis.json&#39;</span><span class="p">,</span>
+        <span class="n">river_thames</span><span class="o">=</span><span class="s1">&#39;oobrien/river_thames_simp.json&#39;</span><span class="p">,</span>
+        <span class="n">tfl_lines</span><span class="o">=</span><span class="s1">&#39;oobrien/tfl_lines.json&#39;</span><span class="p">,</span>
+        <span class="n">zone_boundaries</span><span class="o">=</span><span class="s1">&#39;oobrien/zones1to6.json&#39;</span><span class="p">,</span>
+        <span class="n">osis_xlsx</span><span class="o">=</span><span class="s1">&#39;TfL/out-of-station-interchanges.xlsx&#39;</span><span class="p">,</span>
+        <span class="n">station_depths</span><span class="o">=</span><span class="s1">&#39;TfL/Station depths.csv&#39;</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set path hierarchy for datafiles. &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">StationsPaths</span><span class="p">(</span>
+            <span class="n">tfl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tfl_stations</span><span class="p">),</span>
+            <span class="n">nr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">NRPaths</span><span class="p">(</span>
+                <span class="n">z16</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">rail_stations_london</span><span class="p">),</span>
+                <span class="nb">all</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">rail_stations_all</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="n">disused</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">disused_stations</span><span class="p">),</span>
+            <span class="n">depths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">station_depths</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lines</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">LinesPaths</span><span class="p">(</span>
+            <span class="n">tfl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tfl_lines</span><span class="p">),</span>
+            <span class="n">nr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">rail_lines</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">areas</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">AreasPaths</span><span class="p">(</span>
+            <span class="n">london</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">greater_london</span><span class="p">),</span>
+            <span class="n">river</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">river_thames</span><span class="p">),</span>
+            <span class="n">zones</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">zone_boundaries</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">osis</span> <span class="o">=</span> <span class="n">OSIPaths</span><span class="p">(</span>
+            <span class="n">csv</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">out_of_station_interchanges</span><span class="p">),</span>
+            <span class="n">xlsx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">osis_xlsx</span><span class="p">)</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TfLDataPathConfig"><a class="viewcode-back" href="../../londinium.pathconfig.html#londinium.pathconfig.TfLDataPathConfig">[docs]</a><span class="k">class</span> <span class="nc">TfLDataPathConfig</span><span class="p">(</span><span class="n">_DataPathConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Config for reading TfL Open Data from file. &quot;&quot;&quot;</span>
+
+    <span class="n">StopsPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;StopsPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;boat&#39;</span><span class="p">,</span> <span class="s1">&#39;bus&#39;</span><span class="p">,</span> <span class="s1">&#39;underground&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">RoutesPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;RoutesPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;bus&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">TimetablesPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;TimetablesPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;boat&#39;</span><span class="p">,</span> <span class="s1">&#39;bus&#39;</span><span class="p">,</span> <span class="s1">&#39;cablecar&#39;</span><span class="p">,</span> <span class="s1">&#39;dlr&#39;</span><span class="p">,</span> <span class="s1">&#39;tram&#39;</span><span class="p">,</span> <span class="s1">&#39;underground&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">PassengersPaths</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;PassengersPaths&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="s1">&#39;rods&#39;</span><span class="p">,</span> <span class="s1">&#39;oyster&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">custom_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Build paths for finding TfL data files.</span>
+
+<span class="sd">        Custom paths for any or all of the files can be defined through a dict</span>
+<span class="sd">        using the keywords of :method:`set_paths` as keys.</span>
+
+<span class="sd">        Otherwise, default structure should be the following::</span>
+
+<span class="sd">            basedir/</span>
+<span class="sd">            ├── stops/</span>
+<span class="sd">            │   ├── bus-stops.csv</span>
+<span class="sd">            │   ├── stations.kml</span>
+<span class="sd">            │   └── pierlocations-v1.kml</span>
+<span class="sd">            ├── routes/</span>
+<span class="sd">            │   └── bus-sequences.csv</span>
+<span class="sd">            ├── timetables/</span>
+<span class="sd">            │   ├── boat/</span>
+<span class="sd">            │   ├── bus/</span>
+<span class="sd">            │   ├── cablecar/</span>
+<span class="sd">            │   ├── dlr/</span>
+<span class="sd">            │   ├── tram/</span>
+<span class="sd">            │   └── underground/</span>
+<span class="sd">            └── passengers/</span>
+<span class="sd">                ├── counts/</span>
+<span class="sd">                ├── RODS_2017/</span>
+<span class="sd">                └── Nov09JnyExport.csv</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            basedir:        Base directory where this data is stored. Can be</span>
+<span class="sd">                            ``&quot;&quot;`` if supplying absolute custom_paths.</span>
+<span class="sd">            custom_paths:   Dictionary describing where (in basedir) to find</span>
+<span class="sd">                            each file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="TfLDataPathConfig.set_paths"><a class="viewcode-back" href="../../londinium.pathconfig.html#londinium.pathconfig.TfLDataPathConfig.set_paths">[docs]</a>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">stops_boat</span><span class="o">=</span><span class="s1">&#39;stops/pierlocations-v1.kml&#39;</span><span class="p">,</span>
+        <span class="n">stops_bus</span><span class="o">=</span><span class="s1">&#39;stops/bus-stops.csv&#39;</span><span class="p">,</span>
+        <span class="n">stops_underground</span><span class="o">=</span><span class="s1">&#39;stops/stations.kml&#39;</span><span class="p">,</span>
+        <span class="n">routes_bus</span><span class="o">=</span><span class="s1">&#39;routes/bus-sequences.csv&#39;</span><span class="p">,</span>
+        <span class="n">tt_boat</span><span class="o">=</span><span class="s1">&#39;timetables/boat/tfl_3*.xml&#39;</span><span class="p">,</span>
+        <span class="n">tt_bus</span><span class="o">=</span><span class="s1">&#39;timetables/bus/tfl_*.xml&#39;</span><span class="p">,</span>
+        <span class="n">tt_cablecar</span><span class="o">=</span><span class="s1">&#39;timetables/cablecar/tfl_71-*.xml&#39;</span><span class="p">,</span>
+        <span class="n">tt_dlr</span><span class="o">=</span><span class="s1">&#39;timetables/dlr/tfl_25-*.xml&#39;</span><span class="p">,</span>
+        <span class="n">tt_tram</span><span class="o">=</span><span class="s1">&#39;timetables/tram/tfl_63-*.xml&#39;</span><span class="p">,</span>
+        <span class="n">tt_underground</span><span class="o">=</span><span class="s1">&#39;timetables/underground/tfl_1-*.xml&#39;</span><span class="p">,</span>
+        <span class="n">pax_counts</span><span class="o">=</span><span class="s1">&#39;passengers/counts/&#39;</span><span class="p">,</span>
+        <span class="n">pax_rods</span><span class="o">=</span><span class="s1">&#39;passengers/RODS_2017/&#39;</span><span class="p">,</span>
+        <span class="n">pax_oyster</span><span class="o">=</span><span class="s1">&#39;passengers/Nov09JnyExport.csv&#39;</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set path hierarchy for datafiles. &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">StopsPaths</span><span class="p">(</span>
+            <span class="n">boat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">stops_boat</span><span class="p">),</span>
+            <span class="n">bus</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">stops_bus</span><span class="p">),</span>
+            <span class="n">underground</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">stops_rail</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">RoutesPaths</span><span class="p">(</span>
+            <span class="n">bus</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">routes_bus</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timetables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">TimetablesPaths</span><span class="p">(</span>
+            <span class="n">boat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tt_boat</span><span class="p">),</span>
+            <span class="n">bus</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tt_bus</span><span class="p">),</span>
+            <span class="n">cablecar</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tt_cablecar</span><span class="p">),</span>
+            <span class="n">dlr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tt_dlr</span><span class="p">),</span>
+            <span class="n">tram</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tt_tram</span><span class="p">),</span>
+            <span class="n">underground</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">tt_underground</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PassengersPaths</span><span class="p">(</span>
+            <span class="n">counts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pax_counts</span><span class="p">),</span>
+            <span class="n">rods</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pax_rods</span><span class="p">),</span>
+            <span class="n">oyster</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pax_oyster</span><span class="p">)</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="../../index.html">London Transport</a>&nbsp;&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a>&nbsp;&nbsp;</li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020 William Fletcher.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

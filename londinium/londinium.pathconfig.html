@@ -1,0 +1,366 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>londinium.pathconfig module &#8212; London Transport</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato|Noto+Serif" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">London Transport</a>&nbsp;&nbsp;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-londinium.pathconfig">
+<span id="londinium-pathconfig-module"></span><h1>londinium.pathconfig module<a class="headerlink" href="#module-londinium.pathconfig" title="Permalink to this headline">¶</a></h1>
+<p>Configuration objects for reading files, with defaults.</p>
+<dl class="class">
+<dt id="londinium.pathconfig.RepoDataPathConfig">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.pathconfig.</code><code class="sig-name descname">RepoDataPathConfig</code><span class="sig-paren">(</span><em class="sig-param">basedir</em>, <em class="sig-param">custom_paths=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/pathconfig.html#RepoDataPathConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">londinium.pathconfig._DataPathConfig</span></code></p>
+<p>Config for reading <a class="reference external" href="https://github.com/willflet/tfl-transform/tree/master/londinium/data">data supplied in this repository</a>.</p>
+<dl class="class">
+<dt id="londinium.pathconfig.RepoDataPathConfig.StationsPaths">
+<em class="property">class </em><code class="sig-name descname">StationsPaths</code><span class="sig-paren">(</span><em class="sig-param">tfl</em>, <em class="sig-param">nr</em>, <em class="sig-param">disused</em>, <em class="sig-param">depths</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.StationsPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.StationsPaths.depths">
+<em class="property">property </em><code class="sig-name descname">depths</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.StationsPaths.depths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.StationsPaths.disused">
+<em class="property">property </em><code class="sig-name descname">disused</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.StationsPaths.disused" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.StationsPaths.nr">
+<em class="property">property </em><code class="sig-name descname">nr</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.StationsPaths.nr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.StationsPaths.tfl">
+<em class="property">property </em><code class="sig-name descname">tfl</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.StationsPaths.tfl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.RepoDataPathConfig.NRPaths">
+<em class="property">class </em><code class="sig-name descname">NRPaths</code><span class="sig-paren">(</span><em class="sig-param">z16</em>, <em class="sig-param">all</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.NRPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.NRPaths.all">
+<em class="property">property </em><code class="sig-name descname">all</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.NRPaths.all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.NRPaths.z16">
+<em class="property">property </em><code class="sig-name descname">z16</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.NRPaths.z16" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.RepoDataPathConfig.LinesPaths">
+<em class="property">class </em><code class="sig-name descname">LinesPaths</code><span class="sig-paren">(</span><em class="sig-param">tfl</em>, <em class="sig-param">nr</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.LinesPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.LinesPaths.nr">
+<em class="property">property </em><code class="sig-name descname">nr</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.LinesPaths.nr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.LinesPaths.tfl">
+<em class="property">property </em><code class="sig-name descname">tfl</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.LinesPaths.tfl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.RepoDataPathConfig.AreasPaths">
+<em class="property">class </em><code class="sig-name descname">AreasPaths</code><span class="sig-paren">(</span><em class="sig-param">london</em>, <em class="sig-param">river</em>, <em class="sig-param">zones</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.AreasPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.AreasPaths.london">
+<em class="property">property </em><code class="sig-name descname">london</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.AreasPaths.london" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.AreasPaths.river">
+<em class="property">property </em><code class="sig-name descname">river</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.AreasPaths.river" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.AreasPaths.zones">
+<em class="property">property </em><code class="sig-name descname">zones</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.AreasPaths.zones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.RepoDataPathConfig.OSIPaths">
+<em class="property">class </em><code class="sig-name descname">OSIPaths</code><span class="sig-paren">(</span><em class="sig-param">csv</em>, <em class="sig-param">xlsx</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.OSIPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.OSIPaths.csv">
+<em class="property">property </em><code class="sig-name descname">csv</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.OSIPaths.csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.OSIPaths.xlsx">
+<em class="property">property </em><code class="sig-name descname">xlsx</code><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.OSIPaths.xlsx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.RepoDataPathConfig.set_paths">
+<code class="sig-name descname">set_paths</code><span class="sig-paren">(</span><em class="sig-param">disused_stations='dylanmaryk/disused-stations.json'</em>, <em class="sig-param">greater_london='oobrien/2247.json'</em>, <em class="sig-param">tfl_stations='oobrien/tfl_stations.json'</em>, <em class="sig-param">rail_stations_london='oobrien/nontfl_zonal_stations.json'</em>, <em class="sig-param">rail_stations_all='oobrien/nr_stations.json'</em>, <em class="sig-param">rail_lines='oobrien/nr_lines.json'</em>, <em class="sig-param">out_of_station_interchanges='oobrien/osis.json'</em>, <em class="sig-param">river_thames='oobrien/river_thames_simp.json'</em>, <em class="sig-param">tfl_lines='oobrien/tfl_lines.json'</em>, <em class="sig-param">zone_boundaries='oobrien/zones1to6.json'</em>, <em class="sig-param">osis_xlsx='TfL/out-of-station-interchanges.xlsx'</em>, <em class="sig-param">station_depths='TfL/Station depths.csv'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/pathconfig.html#RepoDataPathConfig.set_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.pathconfig.RepoDataPathConfig.set_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set path hierarchy for datafiles.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.TfLDataPathConfig">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.pathconfig.</code><code class="sig-name descname">TfLDataPathConfig</code><span class="sig-paren">(</span><em class="sig-param">basedir</em>, <em class="sig-param">custom_paths=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/pathconfig.html#TfLDataPathConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">londinium.pathconfig._DataPathConfig</span></code></p>
+<p>Config for reading TfL Open Data from file.</p>
+<dl class="class">
+<dt id="londinium.pathconfig.TfLDataPathConfig.StopsPaths">
+<em class="property">class </em><code class="sig-name descname">StopsPaths</code><span class="sig-paren">(</span><em class="sig-param">boat</em>, <em class="sig-param">bus</em>, <em class="sig-param">underground</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.StopsPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.StopsPaths.boat">
+<em class="property">property </em><code class="sig-name descname">boat</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.StopsPaths.boat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.StopsPaths.bus">
+<em class="property">property </em><code class="sig-name descname">bus</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.StopsPaths.bus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.StopsPaths.underground">
+<em class="property">property </em><code class="sig-name descname">underground</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.StopsPaths.underground" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.TfLDataPathConfig.RoutesPaths">
+<em class="property">class </em><code class="sig-name descname">RoutesPaths</code><span class="sig-paren">(</span><em class="sig-param">bus</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.RoutesPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.RoutesPaths.bus">
+<em class="property">property </em><code class="sig-name descname">bus</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.RoutesPaths.bus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths">
+<em class="property">class </em><code class="sig-name descname">TimetablesPaths</code><span class="sig-paren">(</span><em class="sig-param">boat</em>, <em class="sig-param">bus</em>, <em class="sig-param">cablecar</em>, <em class="sig-param">dlr</em>, <em class="sig-param">tram</em>, <em class="sig-param">underground</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.boat">
+<em class="property">property </em><code class="sig-name descname">boat</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.boat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.bus">
+<em class="property">property </em><code class="sig-name descname">bus</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.bus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.cablecar">
+<em class="property">property </em><code class="sig-name descname">cablecar</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.cablecar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.dlr">
+<em class="property">property </em><code class="sig-name descname">dlr</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.dlr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.tram">
+<em class="property">property </em><code class="sig-name descname">tram</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.tram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.underground">
+<em class="property">property </em><code class="sig-name descname">underground</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.TimetablesPaths.underground" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.pathconfig.TfLDataPathConfig.PassengersPaths">
+<em class="property">class </em><code class="sig-name descname">PassengersPaths</code><span class="sig-paren">(</span><em class="sig-param">counts</em>, <em class="sig-param">rods</em>, <em class="sig-param">oyster</em><span class="sig-paren">)</span><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.PassengersPaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.PassengersPaths.counts">
+<em class="property">property </em><code class="sig-name descname">counts</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.PassengersPaths.counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.PassengersPaths.oyster">
+<em class="property">property </em><code class="sig-name descname">oyster</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.PassengersPaths.oyster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.PassengersPaths.rods">
+<em class="property">property </em><code class="sig-name descname">rods</code><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.PassengersPaths.rods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.pathconfig.TfLDataPathConfig.set_paths">
+<code class="sig-name descname">set_paths</code><span class="sig-paren">(</span><em class="sig-param">stops_boat='stops/pierlocations-v1.kml'</em>, <em class="sig-param">stops_bus='stops/bus-stops.csv'</em>, <em class="sig-param">stops_underground='stops/stations.kml'</em>, <em class="sig-param">routes_bus='routes/bus-sequences.csv'</em>, <em class="sig-param">tt_boat='timetables/boat/tfl_3*.xml'</em>, <em class="sig-param">tt_bus='timetables/bus/tfl_*.xml'</em>, <em class="sig-param">tt_cablecar='timetables/cablecar/tfl_71-*.xml'</em>, <em class="sig-param">tt_dlr='timetables/dlr/tfl_25-*.xml'</em>, <em class="sig-param">tt_tram='timetables/tram/tfl_63-*.xml'</em>, <em class="sig-param">tt_underground='timetables/underground/tfl_1-*.xml'</em>, <em class="sig-param">pax_counts='passengers/counts/'</em>, <em class="sig-param">pax_rods='passengers/RODS_2017/'</em>, <em class="sig-param">pax_oyster='passengers/Nov09JnyExport.csv'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/pathconfig.html#TfLDataPathConfig.set_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.pathconfig.TfLDataPathConfig.set_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set path hierarchy for datafiles.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">London Transport</a>&nbsp;&nbsp;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020 William Fletcher.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
