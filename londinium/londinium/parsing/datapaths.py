@@ -1,4 +1,4 @@
-""" Configuration objects for reading files, with defaults. """
+""" Containers for paths to access data files, with defaults. """
 
 import json
 import yaml
@@ -7,7 +7,18 @@ from collections import namedtuple
 from abc import abstractmethod
 
 
-class _DataPathConfig(object):
+def get_datapaths(tfl_data_basedir, repo_data_basedir,
+                  tfl_custom_paths=None, repo_custom_paths=None):
+    """ Make data path config objects. """
+
+    tfl_data_paths = TfLDataPaths(tfl_data_basedir, tfl_custom_paths)
+    repo_data_paths = RepoDataPaths(repo_data_basedir, repo_custom_paths)
+
+    AllDataPaths = namedtuple('AllDatapaths', ['tfl', 'repo'])
+    return AllDataPaths(tfl=tfl_data_paths, repo=repo_data_paths)
+
+
+class _DataPaths(object):
     """ Base class for storing data paths. """
 
     def __init__(self, basedir, custom_paths=None):
@@ -32,18 +43,20 @@ class _DataPathConfig(object):
 
     @classmethod
     def from_yaml(cls, basedir, yaml_filename):
+        """ Make paths from a config yaml file. """
         with open(yaml_filename, 'r') as f:
             custom_paths = yaml.safe_load(f)
         return cls(basedir, custom_paths=custom_paths)
 
     @classmethod
     def from_json(cls, basedir, json_filename):
+        """ Make paths from a config json file. """
         with open(json_filename, 'r') as f:
             custom_paths = json.load(f)
         return cls(basedir, custom_paths=custom_paths)
 
 
-class RepoDataPathConfig(_DataPathConfig):
+class RepoDataPaths(_DataPaths):
     """ Config for reading `data supplied in this repository`__.
 
     .. _repodata: https://github.com/willflet/tfl-transform/tree/master/londinium/data
@@ -63,7 +76,7 @@ class RepoDataPathConfig(_DataPathConfig):
         ['london', 'river', 'zones']
     )
     OSIPaths = namedtuple('OSIPaths',
-        ['csv', 'xlsx']
+        ['json', 'xlsx']
     )
 
     def __init__(self, basedir, custom_paths=None):
@@ -135,13 +148,13 @@ class RepoDataPathConfig(_DataPathConfig):
             river=self.abspath(river_thames),
             zones=self.abspath(zone_boundaries)
         )
-        self.osis = OSIPaths(
-            csv=self.abspath(out_of_station_interchanges),
+        self.osis = self.OSIPaths(
+            json=self.abspath(out_of_station_interchanges),
             xlsx=self.abspath(osis_xlsx)
         )
 
 
-class TfLDataPathConfig(_DataPathConfig):
+class TfLDataPaths(_DataPaths):
     """ Config for reading TfL Open Data from file. """
 
     StopsPaths = namedtuple('StopsPaths',
@@ -191,6 +204,8 @@ class TfLDataPathConfig(_DataPathConfig):
                             each file.
         """
 
+        super().__init__(basedir, custom_paths)
+
 
     def set_paths(self,
         stops_boat='stops/pierlocations-v1.kml',
@@ -212,7 +227,7 @@ class TfLDataPathConfig(_DataPathConfig):
         self.stops = self.StopsPaths(
             boat=self.abspath(stops_boat),
             bus=self.abspath(stops_bus),
-            underground=self.abspath(stops_rail)
+            underground=self.abspath(stops_underground)
         )
         self.routes = self.RoutesPaths(
             bus=self.abspath(routes_bus)
