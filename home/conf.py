@@ -1,4 +1,4 @@
-project = 'TfL Transform'
+project = 'beauTfL'
 copyright = '2020 William Fletcher'
 author = 'Will Fletcher'
 
@@ -21,8 +21,8 @@ exclude_patterns = []
 pygments_style = 'sphinx'
 
 html_theme = 'cloud'
-html_title = 'TfL Transform'
-html_short_title = 'TfL Transform'
+html_title = 'beauTfL'
+html_short_title = 'beauTfL'
 # html_theme_path = ['../../../../../../Websites/sphinx-themes',]
 html_static_path = ['_static']
 html_css_files = ['css/custom.css']
@@ -60,7 +60,7 @@ html_theme_options = dict(
     # link targets
     # NOTE: roottarget can be name of document (eg: 'index', or "<toc>")
     #       logotarget is same, or can be "<root>" to reflect root value
-    roottarget = "https://docs.bayesiansaddles.com/tfl-transform",
+    roottarget = "https://docs.bayesiansaddles.com/beautfl",
     logotarget = "<root>",
 
     # document dimensions
