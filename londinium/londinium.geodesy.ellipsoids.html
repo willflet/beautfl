@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>londinium.geodesy.ellipsoids module &#8212; London Transport</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato|Noto+Serif" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">London Transport</a>&nbsp;&nbsp;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-londinium.geodesy.ellipsoids">
+<span id="londinium-geodesy-ellipsoids-module"></span><h1>londinium.geodesy.ellipsoids module<a class="headerlink" href="#module-londinium.geodesy.ellipsoids" title="Permalink to this headline">¶</a></h1>
+<p>Interconversion between different coordinate systems.</p>
+<dl class="class">
+<dt id="londinium.geodesy.ellipsoids.Ellipsoid">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.geodesy.ellipsoids.</code><code class="sig-name descname">Ellipsoid</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#Ellipsoid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.Ellipsoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A biaxial ellipsoid reference surface to model the Earth’s.</p>
+<dl class="method">
+<dt id="londinium.geodesy.ellipsoids.Ellipsoid.e2">
+<em class="property">property </em><code class="sig-name descname">e2</code><a class="headerlink" href="#londinium.geodesy.ellipsoids.Ellipsoid.e2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ellipsoid squared eccentricity constant.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.geodesy.ellipsoids.Ellipsoid.n">
+<em class="property">property </em><code class="sig-name descname">n</code><a class="headerlink" href="#londinium.geodesy.ellipsoids.Ellipsoid.n" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.geodesy.ellipsoids.Ellipsoid.ll_to_xyz">
+<code class="sig-name descname">ll_to_xyz</code><span class="sig-paren">(</span><em class="sig-param">lon_lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#Ellipsoid.ll_to_xyz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.Ellipsoid.ll_to_xyz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert ellipsoidal coordinates to geocentric cartesian coordinates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="londinium.geodesy.ellipsoids.Ellipsoid.xyz_to_ll">
+<code class="sig-name descname">xyz_to_ll</code><span class="sig-paren">(</span><em class="sig-param">xyz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#Ellipsoid.xyz_to_ll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.Ellipsoid.xyz_to_ll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert geocentric cartesian coordinates to ellipsoidal coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.geodesy.ellipsoids.WGS84">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.geodesy.ellipsoids.</code><code class="sig-name descname">WGS84</code><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#WGS84"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.WGS84" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#londinium.geodesy.ellipsoids.Ellipsoid" title="londinium.geodesy.ellipsoids.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">londinium.geodesy.ellipsoids.Ellipsoid</span></code></a></p>
+<p>Global reference, based on the GRS80 ellipsoid.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.geodesy.ellipsoids.Airy1830">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.geodesy.ellipsoids.</code><code class="sig-name descname">Airy1830</code><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#Airy1830"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.Airy1830" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#londinium.geodesy.ellipsoids.Ellipsoid" title="londinium.geodesy.ellipsoids.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">londinium.geodesy.ellipsoids.Ellipsoid</span></code></a></p>
+<p>British reference, used by Ordnance Survey.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.geodesy.ellipsoids.HelmertTransformation">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.geodesy.ellipsoids.</code><code class="sig-name descname">HelmertTransformation</code><span class="sig-paren">(</span><em class="sig-param">t_x=0</em>, <em class="sig-param">t_y=0</em>, <em class="sig-param">t_z=0</em>, <em class="sig-param">s=0</em>, <em class="sig-param">r_x=0</em>, <em class="sig-param">r_y=0</em>, <em class="sig-param">r_z=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#HelmertTransformation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.HelmertTransformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Affine transformation between datum geocentric cartesian coordinates.</p>
+<dl class="method">
+<dt id="londinium.geodesy.ellipsoids.HelmertTransformation.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">xyz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#HelmertTransformation.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.HelmertTransformation.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.geodesy.ellipsoids.HelmertTransformation.backward">
+<code class="sig-name descname">backward</code><span class="sig-paren">(</span><em class="sig-param">xyz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/geodesy/ellipsoids.html#HelmertTransformation.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.geodesy.ellipsoids.HelmertTransformation.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">London Transport</a>&nbsp;&nbsp;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020 William Fletcher.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,289 @@
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>londinium.network module &#8212; London Transport</title>
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato|Noto+Serif" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">London Transport</a>&nbsp;&nbsp;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-londinium.network">
+<span id="londinium-network-module"></span><h1>londinium.network module<a class="headerlink" href="#module-londinium.network" title="Permalink to this headline">¶</a></h1>
+<p>Representations of transport networks.</p>
+<dl class="class">
+<dt id="londinium.network.Mode">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Mode</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">way='rail'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Collection of lines operating the same way.</p>
+<dl class="method">
+<dt id="londinium.network.Mode.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#londinium.network.Mode.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Mode.way">
+<em class="property">property </em><code class="sig-name descname">way</code><a class="headerlink" href="#londinium.network.Mode.way" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Mode.check_way">
+<em class="property">static </em><code class="sig-name descname">check_way</code><span class="sig-paren">(</span><em class="sig-param">way</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Mode.check_way"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Mode.check_way" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Mode.lines">
+<em class="property">property </em><code class="sig-name descname">lines</code><a class="headerlink" href="#londinium.network.Mode.lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Mode.add_line">
+<code class="sig-name descname">add_line</code><span class="sig-paren">(</span><em class="sig-param">line</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Mode.add_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Mode.add_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.network.Line">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Line</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Distinct service within a mode. May contain some pattern variations.</p>
+<dl class="method">
+<dt id="londinium.network.Line.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#londinium.network.Line.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Line.colour">
+<em class="property">property </em><code class="sig-name descname">colour</code><a class="headerlink" href="#londinium.network.Line.colour" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Line.links">
+<em class="property">property </em><code class="sig-name descname">links</code><a class="headerlink" href="#londinium.network.Line.links" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Line.add_link">
+<code class="sig-name descname">add_link</code><span class="sig-paren">(</span><em class="sig-param">link</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Line.add_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Line.add_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Line.stops">
+<em class="property">property </em><code class="sig-name descname">stops</code><a class="headerlink" href="#londinium.network.Line.stops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Line.add_stop">
+<code class="sig-name descname">add_stop</code><span class="sig-paren">(</span><em class="sig-param">stop</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Line.add_stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Line.add_stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.network.Section">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Section</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">stop_1</em>, <em class="sig-param">stop_2</em>, <em class="sig-param">links</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contiguous branch of a line, bounded by Stop at junction or terminus.</p>
+<dl class="method">
+<dt id="londinium.network.Section.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#londinium.network.Section.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Section.links">
+<em class="property">property </em><code class="sig-name descname">links</code><a class="headerlink" href="#londinium.network.Section.links" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Section.stops">
+<em class="property">property </em><code class="sig-name descname">stops</code><a class="headerlink" href="#londinium.network.Section.stops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.network.Stop">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Stop</code><span class="sig-paren">(</span><em class="sig-param">id</em>, <em class="sig-param">name</em>, <em class="sig-param">location</em>, <em class="sig-param">elevation=None</em>, <em class="sig-param">disused=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Point for passengers to alight or depart.</p>
+<dl class="method">
+<dt id="londinium.network.Stop.location">
+<em class="property">property </em><code class="sig-name descname">location</code><a class="headerlink" href="#londinium.network.Stop.location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.network.Link">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Link</code><span class="sig-paren">(</span><em class="sig-param">stop_1</em>, <em class="sig-param">stop_2</em>, <em class="sig-param">distance=None</em>, <em class="sig-param">geometry=None</em>, <em class="sig-param">time=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Topological connection between two Stops on a Line.</p>
+<dl class="method">
+<dt id="londinium.network.Link.line">
+<em class="property">property </em><code class="sig-name descname">line</code><a class="headerlink" href="#londinium.network.Link.line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Link.stop_1">
+<em class="property">property </em><code class="sig-name descname">stop_1</code><a class="headerlink" href="#londinium.network.Link.stop_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Link.stop_2">
+<em class="property">property </em><code class="sig-name descname">stop_2</code><a class="headerlink" href="#londinium.network.Link.stop_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Link.geometry">
+<em class="property">property </em><code class="sig-name descname">geometry</code><a class="headerlink" href="#londinium.network.Link.geometry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Link.distance">
+<em class="property">property </em><code class="sig-name descname">distance</code><a class="headerlink" href="#londinium.network.Link.distance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.network.Interchange">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Interchange</code><span class="sig-paren">(</span><em class="sig-param">stops</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Interchange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Interchange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Ties several Stops into an internal or external walking interchange.</p>
+<dl class="method">
+<dt id="londinium.network.Interchange.stops">
+<em class="property">property </em><code class="sig-name descname">stops</code><a class="headerlink" href="#londinium.network.Interchange.stops" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="londinium.network.Interchange.distance">
+<code class="sig-name descname">distance</code><span class="sig-paren">(</span><em class="sig-param">stop_1</em>, <em class="sig-param">stop_2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/londinium/network.html#Interchange.distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Interchange.distance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="londinium.network.Pattern">
+<em class="property">class </em><code class="sig-prename descclassname">londinium.network.</code><code class="sig-name descname">Pattern</code><a class="reference internal" href="_modules/londinium/network.html#Pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#londinium.network.Pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Service pattern, decribing how the line is operated.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">London Transport</a>&nbsp;&nbsp;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020 William Fletcher.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
