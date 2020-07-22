@@ -1,23 +1,36 @@
 """ Mathematical distortion of geographic objects. """
 
 import numpy as np
+from abc import abstractmethod
 
 
-RADIAL_TRANSFORM = lambda x: np.arctan(x/5000)
-CENTRE = [530500, 181500]
-DISTORT = lambda x: polar_distort(x, transform=TRANSFORM, centre=CENTRE)
+class Distortion(object):
+    """ Some transformation to apply to spatial geometries before plotting."""
 
-
-class Location(object)
     def __init__(self):
         pass
 
+    @abstractmethod
+    def __call__(self, geometry):
+        return geometry
 
-class PolarDistortion(object):
 
-    def __init__(self, centre=CENTRE, radial_transform=RADIAL_TRANSFORM):
+class NoDistortion(Distortion):
+    """ The identity transformation. No effect. """
+
+    def __call__(self, geometry):
+        return geometry
+
+
+class PolarDistortion(Distortion):
+    """ A fisheye effect in polar coordinates, distorting radially. """
+
+    def __init__(self,
+                 centre=[530500, 181500],
+                 radial_transform=lambda x: np.arctan(x/5000)):
         self._centre = centre
         self._radial_transform = radial_transform
+        super().__init__()
 
     def __call__(self, geometry):
         v = np.subtract(geometry, self.centre)

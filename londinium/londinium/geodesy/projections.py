@@ -2,6 +2,7 @@
 
 import numpy as np
 from .coordinates import make_canonical_ll
+from .ellipsoids import WGS84, Airy1830
 
 
 class TransverseMercator(object):
@@ -96,7 +97,7 @@ class TransverseMercator(object):
 
 class UTM29(TransverseMercator):
     """ Universal Transverse Mercator zone 29. """
-    def __init__(self, ellipsoid):
+    def __init__(self, ellipsoid=WGS84()):
         super().__init__(
             lon0=-9,
             lat0=0,
@@ -107,7 +108,7 @@ class UTM29(TransverseMercator):
 
 
 class NationalGrid(TransverseMercator):
-    def __init__(self, ellipsoid):
+    def __init__(self, ellipsoid=Airy1830()):
         super().__init__(
             lon0=-2,
             lat0=49,

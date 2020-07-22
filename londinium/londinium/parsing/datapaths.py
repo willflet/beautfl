@@ -1,10 +1,16 @@
-""" Containers for paths to access data files, with defaults. """
+""" Containers for storing paths to data files in a canonical way.
+
+File types are stored alongside the string paths, which may be specified by arbitrary folder structure or left as default.
+"""
 
 import json
 import yaml
 import os.path
 from collections import namedtuple
 from abc import abstractmethod
+
+from .json import DisusedStationsFile, OSIFile
+from .geojson import GeoJSONLinesFile, GeoJSONStationsFile
 
 
 def get_datapaths(tfl_data_basedir, repo_data_basedir,
@@ -121,7 +127,7 @@ class RepoDataPaths(_DataPaths):
         rail_stations_london='oobrien/nontfl_zonal_stations.json',
         rail_stations_all='oobrien/nr_stations.json',
         rail_lines='oobrien/nr_lines.json',
-        out_of_station_interchanges='oobrien/osis.json',
+        osis_json='oobrien/osis.json',
         river_thames='oobrien/river_thames_simp.json',
         tfl_lines='oobrien/tfl_lines.json',
         zone_boundaries='oobrien/zones1to6.json',
@@ -131,26 +137,26 @@ class RepoDataPaths(_DataPaths):
         """ Set path hierarchy for datafiles. """
 
         self.stations = self.StationsPaths(
-            tfl=self.abspath(tfl_stations),
+            tfl=(self.abspath(tfl_stations), GeoJSONStationsFile),
             nr=self.NRPaths(
-                z16=self.abspath(rail_stations_london),
-                all=self.abspath(rail_stations_all)
+                z16=(self.abspath(rail_stations_london), GeoJSONStationsFile),
+                all=(self.abspath(rail_stations_all), GeoJSONStationsFile)
             ),
-            disused=self.abspath(disused_stations),
-            depths=self.abspath(station_depths)
+            disused=(self.abspath(disused_stations), DisusedStationsFile),
+            depths=(self.abspath(station_depths), None)
         )
         self.lines=self.LinesPaths(
-            tfl=self.abspath(tfl_lines),
-            nr=self.abspath(rail_lines)
+            tfl=(self.abspath(tfl_lines), GeoJSONLinesFile),
+            nr=(self.abspath(rail_lines), GeoJSONLinesFile)
         )
         self.areas=self.AreasPaths(
-            london=self.abspath(greater_london),
-            river=self.abspath(river_thames),
-            zones=self.abspath(zone_boundaries)
+            london=(self.abspath(greater_london), None),
+            river=(self.abspath(river_thames), None),
+            zones=(self.abspath(zone_boundaries), None)
         )
         self.osis = self.OSIPaths(
-            json=self.abspath(out_of_station_interchanges),
-            xlsx=self.abspath(osis_xlsx)
+            json=(self.abspath(osis_json), OSIFile),
+            xlsx=(self.abspath(osis_xlsx), None)
         )
 
 

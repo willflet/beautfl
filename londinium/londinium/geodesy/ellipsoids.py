@@ -11,12 +11,12 @@ class Ellipsoid(object):
         self.a = a
         self.b = b
 
-    @parameter
+    @property
     def e2(self):
         """ Ellipsoid squared eccentricity constant. """
         return 1 - (self.b/self.a)**2
 
-    @parameter
+    @property
     def n(self):
         return (self.a - self.b) / (self.a + self.b)
 
