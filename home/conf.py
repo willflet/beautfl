@@ -9,6 +9,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
+    'cloud_sptheme.ext.relbar_toc',
     'm2r'
 ]
 
@@ -30,6 +31,11 @@ templates_path = ['_templates']
 html_favicon = '_static/favicon.ico'
 html_logo = '_static/logo.png'
 htmlhelp_basename = 'docpages'
+
+relbar_links = [
+    ["https://docs.bayesiansaddles.com/index", "Docpages Home"],
+    ["https://bayesiansaddles.com/index", "Main Site"]
+]
 
 html_theme_options = dict(
     # restyles theme so page background is same as document
@@ -60,7 +66,7 @@ html_theme_options = dict(
     # link targets
     # NOTE: roottarget can be name of document (eg: 'index', or "<toc>")
     #       logotarget is same, or can be "<root>" to reflect root value
-    roottarget = "https://docs.bayesiansaddles.com/beautfl",
+    roottarget = "https://docs.bayesiansaddles.com/beautfl/index",
     logotarget = "<root>",
 
     # document dimensions
