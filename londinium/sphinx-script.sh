@@ -9,4 +9,4 @@ sudo rm -rf docs/source/modules.rst
 sphinx-apidoc -feM -d 1 -o docs/source .
 #sed -i "s/.. toctree::/.. toctree::\n   :maxdepth: 1/g" doc/source/londinium.*
 sed -i "s/    /   /g" docs/source/londinium.*
-sphinx-build -b html docs/source/ ../../../../Websites/docpages/tfl-transform/londinium
+sphinx-build -b html docs/source/ ../../../../Websites/docpages/beautfl/londinium
